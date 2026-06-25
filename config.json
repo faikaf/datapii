@@ -1,0 +1,67 @@
+{
+  "input_folder": "./input",
+  "output_folder": "./output",
+  "ocr_engine": "tesseract",
+  "tesseract_cmd": null,
+  "spacy_model": "en_core_web_sm",
+  "entity_types": [
+    "PERSON",
+    "EMAIL_ADDRESS",
+    "PHONE_NUMBER",
+    "CREDIT_CARD",
+    "IBAN_CODE",
+    "US_SSN",
+    "DATE_TIME",
+    "LOCATION",
+    "URL",
+    "ORGANIZATION",
+    "MEDICAL_LICENSE"
+  ],
+  "replacement_mappings": {
+    "faikaf": "fabcdf"
+  },
+  "custom_regex_patterns": [
+    {
+      "name": "MEDICAL_LICENSE",
+      "regex": "[A-Z]{2}\\d{6}",
+      "entity": "MEDICAL_LICENSE",
+      "score": 0.85
+    }
+  ],
+  "replacement_strategies": {
+    "EMAIL_ADDRESS": {
+      "type": "static",
+      "value": "email_redacted@example.com"
+    },
+    "PHONE_NUMBER": {
+      "type": "static",
+      "value": "XXX-XXX-XXXX"
+    },
+    "CREDIT_CARD": {
+      "type": "mask_preserve",
+      "preserve_suffix_len": 4,
+      "mask_char": "X"
+    },
+    "US_SSN": {
+      "type": "static",
+      "value": "XXX-XX-XXXX"
+    },
+    "LOCATION": {
+      "type": "static",
+      "value": "ADDRESS_REDACTED"
+    },
+    "ORGANIZATION": {
+      "type": "pseudonym",
+      "prefix": "ORG_"
+    },
+    "PERSON": {
+      "type": "pseudonym",
+      "prefix": "Person_"
+    },
+    "DEFAULT": {
+      "type": "static",
+      "value": "REDACTED"
+    }
+  },
+  "logging_level": "INFO"
+}

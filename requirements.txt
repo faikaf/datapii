@@ -1,0 +1,4 @@
+pymupdf>=1.23.0
+presidio-analyzer>=2.2.0
+spacy>=3.5.0
+pytesseract>=0.3.10
